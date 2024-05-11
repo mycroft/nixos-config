@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   username = "mycroft";
+  homeDirectory = "/home/${username}";
 
   lockCommand = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
 
@@ -13,14 +14,14 @@ let
     Value = "";
     Status = "locked";
   };
-in {
+in
+{
   imports = lib.concatMap import [
     ./modules
   ];
 
   home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
+    inherit username homeDirectory;
 
     sessionVariables = {
       XDG_SESSION_TYPE = "wayland";
@@ -136,13 +137,13 @@ in {
           # Misc
           "ui.key.menuAccessKeyFocuses" = lockFalse;
           "browser.translations.automaticallyPopup" = lockFalse;
-	  "browser.translations.panelShown" = lockFalse;
+          "browser.translations.panelShown" = lockFalse;
 
-	  # Restore previous session
-	  "browser.startup.page" = {
-	    Value = 3;
-	    Status = "locked";
-	  };
+          # Restore previous session
+          "browser.startup.page" = {
+            Value = 3;
+            Status = "locked";
+          };
         };
       };
     };
@@ -228,10 +229,10 @@ in {
       timeout = 1770;
       command = "${pkgs.libnotify}/bin/notify-send 'locking in 30 seconds' -t 30000";
     }
-    {
-      timeout = 1800;
-      command = "${pkgs.systemd}/bin/loginctl lock-session";
-    }];
+      {
+        timeout = 1800;
+        command = "${pkgs.systemd}/bin/loginctl lock-session";
+      }];
     events = [{
       event = "lock";
       command = lockCommand;

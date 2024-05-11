@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -21,7 +22,7 @@
   networking.wireless.iwd.enable = true;
 
   boot.loader.systemd-boot.configurationLimit = 5;
-  boot.kernel.sysctl = { "vm.swappiness" = 10;};
+  boot.kernel.sysctl = { "vm.swappiness" = 10; };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -78,11 +79,11 @@
       defaultSession = "sway";
       autoLogin = {
         enable = false;
-	user = "mycroft";
+        user = "mycroft";
       };
       gdm = {
         enable = true;
-	wayland = true;
+        wayland = true;
       };
     };
   };
@@ -93,10 +94,10 @@
       enable = true;
       defaultFonts.monospace = [
         # Use `fc-list : family style` to find fonts
-	"Hack Nerd Font Mono"
+        "Hack Nerd Font Mono"
         # "Noto Sans Mono"
         "Noto Color Emoji"
-	"Noto Emoji"
+        "Noto Emoji"
       ];
     };
     packages = with pkgs; [
@@ -116,8 +117,8 @@
     extraGroups = [ "networkmanager" "wheel" ];
 
     openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMek8Cn3KNlEeHP2f9vZCbx/hzNc3xzJI9+2FM7Mbx5y mycroft@nee.mkz.me"
-	"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIASLd/ou8xDr81AKt37sMTad2jKNyRqF614kdJG829zp mycroft@glitter.mkz.me"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMek8Cn3KNlEeHP2f9vZCbx/hzNc3xzJI9+2FM7Mbx5y mycroft@nee.mkz.me"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIASLd/ou8xDr81AKt37sMTad2jKNyRqF614kdJG829zp mycroft@glitter.mkz.me"
     ];
 
     shell = pkgs.fish;
@@ -199,7 +200,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; 
+  system.stateVersion = "23.11";
 
   security.sudo.wheelNeedsPassword = false;
   security.pam.services.su.requireWheel = true;
