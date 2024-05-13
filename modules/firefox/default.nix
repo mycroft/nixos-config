@@ -42,7 +42,12 @@ in
       settings = {
         "app.update.auto" = false;
         "browser.startup.homepage" = "about:blank";
+        "browser.startup.blankWindow" = true;
         "browser.newtabpage.enabled" = false;
+        "browser.places.importBookmarksHTML" = false;
+        "browser.aboutwelcome.enabled" = false;
+        "startup.homepage_welcome_url" = "about:blank";
+        "trailhead.firstrun.didSeeAboutWelcome" = true;
         "browser.uiCustomization.state" = builtins.toJSON {
           placements = {
             widget-overflow-fixed-list = [ ];
