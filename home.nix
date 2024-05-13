@@ -5,6 +5,11 @@ let
 
   lockCommand = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
 
+  lockTrue = {
+    Value = true;
+    Status = "locked";
+  };
+
   lockFalse = {
     Value = false;
     Status = "locked";
@@ -39,6 +44,7 @@ in
 
       libnotify
       swaylock-effects
+      wl-clipboard
     ];
 
     # This value determines the home Manager release that your
@@ -55,6 +61,23 @@ in
   programs = {
     firefox = {
       enable = true;
+
+      profiles.default = {
+        isDefault = true;
+        bookmarks = [
+          {
+            name = "nixos search";
+            toolbar = true;
+            bookmarks = [
+              {
+                url = "https://search.nixos.org";
+              }
+            ];
+          }
+        ];
+
+        settings = { };
+      };
 
       policies = {
         DisableTelemetry = true;
@@ -76,6 +99,17 @@ in
           "ui.key.menuAccessKeyFocuses" = lockFalse;
           "browser.translations.automaticallyPopup" = lockFalse;
           "browser.translations.panelShown" = lockFalse;
+
+          "browser.search.suggest.enabled" = lockFalse;
+          "browser.search.suggest.enabled.private" = lockFalse;
+          "browser.urllab.showSuggestionsFirst" = lockFalse;
+          "browser.urlbar.suggest.searches" = lockFalse;
+          "browser.urlbar.suggest.bookmark" = lockFalse;
+          "browser.urlbar.suggest.clipboard" = lockFalse;
+          "browser.urlbar.suggest.engines" = lockFalse;
+          "browser.urlbar.suggest.history" = lockTrue;
+          "browser.urlbar.suggest.openpage" = lockFalse;
+          "browser.urlbar.suggest.topsites" = lockFalse;
 
           # Restore previous session
           "browser.startup.page" = {

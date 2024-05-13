@@ -9,6 +9,7 @@
       bottom
       eza
       zoxide
+      jq
     ];
   };
 
