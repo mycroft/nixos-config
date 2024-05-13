@@ -1,5 +1,6 @@
 [
   ./alacritty
+  ./firefox
   ./fish
   ./git
   ./neovim

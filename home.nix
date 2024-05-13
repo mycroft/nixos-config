@@ -4,21 +4,6 @@ let
   homeDirectory = "/home/${username}";
 
   lockCommand = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-
-  lockTrue = {
-    Value = true;
-    Status = "locked";
-  };
-
-  lockFalse = {
-    Value = false;
-    Status = "locked";
-  };
-
-  lockEmpty = {
-    Value = "";
-    Status = "locked";
-  };
 in
 {
   imports = lib.concatMap import [
@@ -59,71 +44,6 @@ in
   };
 
   programs = {
-    firefox = {
-      enable = true;
-
-      profiles.default = {
-        isDefault = true;
-        bookmarks = [
-          {
-            name = "nixos search";
-            toolbar = true;
-            bookmarks = [
-              {
-                url = "https://search.nixos.org";
-              }
-            ];
-          }
-        ];
-
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          bitwarden
-        ];
-
-        settings = { };
-      };
-
-      policies = {
-        DisableTelemetry = true;
-        DisableFirefoxStudies = true;
-        DontCheckDefaultBrowser = true;
-        DisablePocket = true;
-        SearchBar = "unified";
-
-        Preferences = {
-          # Privacy
-          "extensions.pocket.enabled" = lockFalse;
-          "browser.newtabpage.pinned" = lockEmpty;
-          "browser.topsites.contile.enabled" = lockFalse;
-          "browser.newtabpage.activity-stream.showSponsored" = lockFalse;
-          "browser.newtabpage.activity-stream.system.showSponsored" = lockFalse;
-          "browser.newtabpage.activity-stream.showSponsoredTopSites" =
-            lockFalse;
-          # Misc
-          "ui.key.menuAccessKeyFocuses" = lockFalse;
-          "browser.translations.automaticallyPopup" = lockFalse;
-          "browser.translations.panelShown" = lockFalse;
-
-          "browser.search.suggest.enabled" = lockFalse;
-          "browser.search.suggest.enabled.private" = lockFalse;
-          "browser.urllab.showSuggestionsFirst" = lockFalse;
-          "browser.urlbar.suggest.searches" = lockFalse;
-          "browser.urlbar.suggest.bookmark" = lockFalse;
-          "browser.urlbar.suggest.clipboard" = lockFalse;
-          "browser.urlbar.suggest.engines" = lockFalse;
-          "browser.urlbar.suggest.history" = lockTrue;
-          "browser.urlbar.suggest.openpage" = lockFalse;
-          "browser.urlbar.suggest.topsites" = lockFalse;
-
-          # Restore previous session
-          "browser.startup.page" = {
-            Value = 3;
-            Status = "locked";
-          };
-        };
-      };
-    };
-
     go.enable = true;
 
     vscode = {
