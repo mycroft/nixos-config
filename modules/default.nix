@@ -1,4 +1,5 @@
 [
+  ./alacritty
   ./fish
   ./git
   ./neovim

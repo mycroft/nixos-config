@@ -37,10 +37,6 @@ in
       fd
       fzf
 
-      # fish
-      fishPlugins.fzf
-      fishPlugins.bobthefish
-
       libnotify
       swaylock-effects
     ];
@@ -57,64 +53,6 @@ in
   };
 
   programs = {
-    alacritty = {
-      enable = true;
-
-      settings = {
-        colors = {
-          bright = {
-            black = "0x7f7f7f";
-            blue = "0x5c5cff";
-            cyan = "0x00ffff";
-            green = "0x00ff00";
-            magenta = "0xff00ff";
-            red = "0xff0000";
-            white = "0xffffff";
-            yellow = "0xffff00";
-          };
-          normal = {
-            black = "0x000000";
-            blue = "0x0d73cc";
-            cyan = "0x00cdcd";
-            green = "0x00cd00";
-            magenta = "0xcd00cd";
-            red = "0xcd0000";
-            white = "0xe5e5e5";
-            yellow = "0xcdcd00";
-          };
-          primary = {
-            background = "0x000000";
-            foreground = "0xffffff";
-          };
-        };
-        font = {
-          size = 11;
-          bold = { style = "Bold"; };
-          glyph_offset = {
-            x = 0;
-            y = 0;
-          };
-          italic = { style = "Italic"; };
-          normal = {
-            family = "monospace";
-            style = "Regular";
-          };
-          offset = {
-            x = 0;
-            y = 0;
-          };
-        };
-        selection = {
-          # save_to_clipboard = true;
-          semantic_escape_chars = '',│`|:"' ()[]{}<>\t^'';
-        };
-        window = {
-          decorations = "full";
-          opacity = 0.9;
-        };
-      };
-    };
-
     firefox = {
       enable = true;
 
@@ -145,48 +83,6 @@ in
             Status = "locked";
           };
         };
-      };
-    };
-
-    fish = {
-      enable = true;
-
-      interactiveShellInit = ''
-        # Change fzf behavior
-        bind \ct transpose-chars
-        bind \cg transpose-words
-
-        # Was \ct, but conflict with bash' transpose-chars
-        bind \cf fzf-file-widget
-        bind \cr fzf-history-widget
-
-        fish_add_path -p $KREW_ROOT/bin
-      '';
-
-      shellInit = ''
-        function fish_greeting
-          # Remove bobthefish default greetings
-        end
-
-        set -g theme_display_date no
-        set -g theme_display_cmd_duration no
-        set -g theme_display_k8s_context yes
-        set -g theme_display_k8s_namespace no
-      '';
-
-      shellAbbrs = {
-        l = "eza --bytes --git --group --long -snew --group-directories-first";
-        ls = "eza";
-        ll = "eza --bytes --git --group --long -snew --group-directories-first";
-        la = "eza --bytes --git --group --long -snew --group-directories-first -a";
-        lt = "eza --bytes --git --group --long -snew --group-directories-first --tree --level=2";
-        lta = "eza --bytes --git --group --long -snew --group-directories-first --tree --level=2 -a";
-        cat = "bat -p";
-        k = "kubectl";
-        kns = "kubectl-ns";
-        kctx = "kubectl-ctx";
-        cd = "z";
-        dc = "z";
       };
     };
 
