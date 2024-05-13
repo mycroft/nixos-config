@@ -86,6 +86,15 @@ in
       };
     };
 
+    go.enable = true;
+
+    vscode = {
+      enable = true;
+      extensions = with pkgs.vscode-extensions; [
+        golang.go
+      ];
+    };
+
     # Let home Manager install and manage itself.
     home-manager.enable = true;
 
