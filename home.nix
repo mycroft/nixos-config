@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nur, ... }:
 let
   username = "mycroft";
   homeDirectory = "/home/${username}";
@@ -74,6 +74,10 @@ in
               }
             ];
           }
+        ];
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          bitwarden
         ];
 
         settings = { };

@@ -4,6 +4,7 @@
   inputs = {
     # NixOS official package source, using the nixos-23.11 branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nur = { url = "github:nix-community/NUR"; };
 
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -15,9 +16,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nur, ... }@inputs:
     let
       system = "x86_64-linux";
+
     in
     {
       # Please replace my-nixos with your hostname
@@ -39,6 +41,7 @@
             home-manager.users.mycroft = import ./home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+            nixpkgs.overlays = [ nur.overlay ];
           }
         ];
       };

@@ -26,6 +26,8 @@
       set -g set-titles on
       set -g set-titles-string "#T"
 
+      set-option -g update-environment "DISPLAY WAYLAND_DISPLAY"
+
       # End of personal configuration
     '';
   };
