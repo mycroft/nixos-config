@@ -73,19 +73,24 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      variant = "";
+      layout = "us";
+    };
     displayManager = {
-      defaultSession = "sway";
-      autoLogin = {
-        enable = false;
-        user = "mycroft";
-      };
       gdm = {
         enable = true;
         wayland = true;
       };
     };
+  };
+
+  services.displayManager = {
+    autoLogin = {
+      enable = false;
+      user = "mycroft";
+    };
+    defaultSession = "sway";
   };
 
   fonts = {
@@ -134,7 +139,7 @@
     neovim
     wget
     curl
-    nixfmt
+    nixfmt-classic
   ];
 
   programs.bash.shellAliases = {
