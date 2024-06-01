@@ -26,6 +26,7 @@ in
       bat
       fd
       fzf
+      ripgrep
 
       libnotify
       swaylock-effects
